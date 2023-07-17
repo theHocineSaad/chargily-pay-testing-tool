@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/06/07 18:36:48.000.766,=D:\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/06/07 18:38:42.000.623,D:\Projects\Unit1.pas=D:\Projects\Chargily Pay Testing Tool\UnitHome.pas</Transaction>
+    <Transaction>2023/06/07 18:38:42.000.623,D:\Projects\Unit1.fmx=D:\Projects\Chargily Pay Testing Tool\UnitHome.fmx</Transaction>
+    <Transaction>2023/06/07 18:39:09.000.274,D:\Projects\Project1.dproj=D:\Projects\Chargily Pay Testing Tool\cptt.dproj</Transaction>
+    <Transaction>2023/06/08 14:35:06.000.552,=D:\Projects\Chargily Pay Testing Tool\Unit1.pas</Transaction>
+    <Transaction>2023/06/08 14:37:00.000.737,D:\Projects\Chargily Pay Testing Tool\Unit1.pas=D:\Projects\Chargily Pay Testing Tool\UnitRequestInfo.pas</Transaction>
+    <Transaction>2023/06/08 14:37:00.000.737,D:\Projects\Chargily Pay Testing Tool\Unit1.fmx=D:\Projects\Chargily Pay Testing Tool\UnitRequestInfo.fmx</Transaction>
+  </Transactions>
+</BorlandProject>

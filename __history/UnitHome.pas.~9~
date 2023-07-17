@@ -1,0 +1,138 @@
+unit UnitHome;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Controls.Presentation, FMX.Objects, FMX.Edit, System.Hash, FMX.ListBox, json, REST.Json,
+  System.Net.URLClient, System.Net.HttpClient, System.Net.HttpClientComponent, ShellAPI;
+
+type
+  Thome = class(TForm)
+    webhookUrlLabel: TLabel;
+    invoiceIdLabel: TLabel;
+    webhookUrl: TEdit;
+    invoiceId: TEdit;
+    secretLabel: TLabel;
+    secret: TEdit;
+    status: TComboBox;
+    paid: TListBoxItem;
+    failed: TListBoxItem;
+    NetHTTPClient: TNetHTTPClient;
+    NetHTTPRequest: TNetHTTPRequest;
+    sendBtn: TRoundRect;
+    Label1: TLabel;
+    closeBtn: TRectangle;
+    Label2: TLabel;
+    minimizeBtn: TRectangle;
+    Label3: TLabel;
+    Rectangle2: TRectangle;
+    logo: TImage;
+    bg: TRectangle;
+    title: TLabel;
+    docsLink: TLabel;
+    Label4: TLabel;
+    chargilyPayDocsLink: TRectangle;
+    Image1: TImage;
+    Label7: TLabel;
+    procedure updateChargilyPayResponse();
+    procedure invoiceIdTyping(Sender: TObject);
+    procedure statusChange(Sender: TObject);
+    procedure webhookUrlTyping(Sender: TObject);
+    procedure webhookUrlChange(Sender: TObject);
+    procedure NetHTTPRequestRequestCompleted(const Sender: TObject;
+      const AResponse: IHTTPResponse);
+    procedure sendBtnClick(Sender: TObject);
+    procedure closeBtnClick(Sender: TObject);
+    procedure chargilyPayDocsLinkClick(Sender: TObject);
+    procedure minimizeBtnClick(Sender: TObject);
+  private
+    chargilyPayResponse: String;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  home: Thome;
+implementation
+
+{$R *.fmx}
+
+function getSignature(chargilyPayResponse: String): String;
+ begin
+  result := THashSHA2.GetHMAC(chargilyPayResponse, home.secret.Text);
+ end;
+
+ function getFormatedJson(stringValue: String): String;
+ var chargilyPayResponseJson: TJsonValue;
+ begin
+   chargilyPayResponseJson := TJSONObject.ParseJSONValue(stringValue);
+   result := TJson.Format(chargilyPayResponseJson);
+ end;
+
+ procedure Thome.updateChargilyPayResponse();
+ begin
+   chargilyPayResponse := '{"invoice":{"id":100000,"client":"Test Client","client_email":"testclient@mail.com","invoice_number":"' + invoiceId.Text + '","status":"' + home.status.Selected.Name + '","amount":5000,"fee":75,"discount":0,"due_amount":5075,' + '"comment":"Payment for T-Shirt","mode":"CIB","new":1,"tos":1,"back_url":"https:\/\/www.domain.com\/","invoice_token":"random_token_here","api_key_id":null,"meta_data":null,' + '"due_date":"2022-04-27 00:00:00","created_at":"2022-04-27 20:59:07","updated_at":"2022-04-27 21:01:09"}}';
+ end;
+
+procedure Thome.NetHTTPRequestRequestCompleted(const Sender: TObject;
+  const AResponse: IHTTPResponse);
+begin
+  // Reenable send btn after request finished
+  sendBtn.Enabled := true;
+  sendBtn.Cursor := crHandPoint;
+
+  showmessage('webhook has been sent!');
+end;
+
+procedure Thome.chargilyPayDocsLinkClick(Sender: TObject);
+begin
+  ShellExecute(0, 'open', PChar('https://dev.chargily.com/docs/'), nil, nil, 0);
+end;
+
+procedure Thome.closeBtnClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure Thome.invoiceIdTyping(Sender: TObject);
+begin
+  updateChargilyPayResponse();
+end;
+
+procedure Thome.minimizeBtnClick(Sender: TObject);
+begin
+  WindowState := TWindowState.wsMinimized;
+end;
+
+procedure Thome.sendBtnClick(Sender: TObject);
+var chargilyPayResponseAsStringStream : TStringStream;
+begin
+  chargilyPayResponseAsStringStream := TStringStream.create(chargilyPayResponse);
+
+  NetHTTPRequest.CustomHeaders['Signature'] := getSignature(chargilyPayResponse);
+  NetHTTPRequest.Post(webhookUrl.Text, chargilyPayResponseAsStringStream);
+
+  // Disable button while sending request
+  sendBtn.Enabled := false;
+  sendBtn.Cursor := crHourGlass;
+end;
+
+procedure Thome.statusChange(Sender: TObject);
+begin
+  updateChargilyPayResponse();
+end;
+
+procedure Thome.webhookUrlChange(Sender: TObject);
+begin
+  NetHTTPRequest.URL := webhookUrl.Text;
+end;
+
+procedure Thome.webhookUrlTyping(Sender: TObject);
+begin
+  NetHTTPRequest.URL := webhookUrl.Text;
+end;
+
+end.

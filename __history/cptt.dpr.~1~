@@ -1,0 +1,14 @@
+program cptt;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  UnitHome in 'UnitHome.pas' {home};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(Thome, home);
+  Application.Run;
+end.

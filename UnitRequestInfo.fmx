@@ -1,0 +1,191 @@
+object requestInfo: TrequestInfo
+  Left = 0
+  Top = 0
+  BorderStyle = None
+  Caption = 'Request Info'
+  ClientHeight = 471
+  ClientWidth = 898
+  Position = MainFormCenter
+  Transparency = True
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object bg: TRectangle
+    Align = Contents
+    Fill.Color = claWhite
+    Locked = True
+    Size.Width = 898.000000000000000000
+    Size.Height = 471.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    XRadius = 20.000000000000000000
+    YRadius = 20.000000000000000000
+    object footer: TLayout
+      Align = Bottom
+      Padding.Left = 15.000000000000000000
+      Padding.Right = 15.000000000000000000
+      Position.Y = 406.000000000000000000
+      Size.Width = 898.000000000000000000
+      Size.Height = 65.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object doneBtn: TRoundRect
+        Align = MostTop
+        Cursor = crHandPoint
+        Fill.Color = xFF680488
+        Position.X = 15.000000000000000000
+        Size.Width = 868.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = doneBtnClick
+        object Label1: TLabel
+          Align = Center
+          StyledSettings = [Style]
+          Size.Width = 199.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Tahoma'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Center
+          Text = 'Done / Close this window'
+          TabOrder = 0
+        end
+      end
+    end
+    object GridPanelLayout1: TGridPanelLayout
+      Align = Client
+      Padding.Left = 12.000000000000000000
+      Padding.Right = 12.000000000000000000
+      Size.Width = 898.000000000000000000
+      Size.Height = 406.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      ColumnCollection = <
+        item
+          Value = 100.000000000000000000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = top
+          Row = 0
+        end
+        item
+          Column = 0
+          Control = bottom
+          Row = 1
+        end>
+      RowCollection = <
+        item
+          Value = 50.000000000000000000
+        end
+        item
+          Value = 50.000000000000000000
+        end>
+      object top: TLayout
+        Align = Client
+        Padding.Left = 15.000000000000000000
+        Padding.Right = 15.000000000000000000
+        Size.Width = 874.000000000000000000
+        Size.Height = 203.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object title: TLabel
+          AutoTranslate = False
+          StyledSettings = []
+          Size.Width = 177.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Ebrima'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Text = 'Request - POST'
+          TabOrder = 4
+        end
+        object webhookUrl: TLabel
+          Anchors = [akLeft, akTop, akRight]
+          StyledSettings = []
+          Position.X = 152.000000000000000000
+          Size.Width = 723.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Ebrima'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Trailing
+          TabOrder = 3
+        end
+        object requestContentMemo: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          StyledSettings = [Style, FontColor]
+          TextSettings.Font.Family = 'Ebrima'
+          TextSettings.Font.Size = 14.000000000000000000
+          Anchors = [akLeft, akTop, akRight]
+          Position.Y = 41.000000000000000000
+          Size.Width = 873.000000000000000000
+          Size.Height = 162.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Viewport.Width = 869.000000000000000000
+          Viewport.Height = 158.000000000000000000
+        end
+      end
+      object bottom: TLayout
+        Align = Client
+        Padding.Left = 15.000000000000000000
+        Padding.Right = 15.000000000000000000
+        Size.Width = 874.000000000000000000
+        Size.Height = 203.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object Label2: TLabel
+          AutoTranslate = False
+          StyledSettings = []
+          Size.Width = 177.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Ebrima'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          Text = 'Reponse'
+          TabOrder = 4
+        end
+        object statusCode: TLabel
+          Anchors = [akLeft, akTop, akRight]
+          StyledSettings = [FontColor]
+          Position.X = 432.000000000000000000
+          Size.Width = 443.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Ebrima'
+          TextSettings.Font.Size = 16.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.HorzAlign = Trailing
+          TabOrder = 3
+        end
+        object responseContentMemo: TMemo
+          Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+          DataDetectorTypes = []
+          StyledSettings = [Style, FontColor]
+          TextSettings.Font.Family = 'Ebrima'
+          TextSettings.Font.Size = 14.000000000000000000
+          Anchors = [akLeft, akTop, akRight]
+          Position.X = 1.000000000000000000
+          Position.Y = 41.000000000000000000
+          Size.Width = 873.000000000000000000
+          Size.Height = 162.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 5
+          Viewport.Width = 869.000000000000000000
+          Viewport.Height = 158.000000000000000000
+        end
+      end
+    end
+  end
+end
