@@ -2,6 +2,8 @@
 
 <p align="center"><img src="https://i.imgur.com/CArEK6w.png"></p>
 
+Download the installer from here: [Install Chargily Pay Testing Tool 1.0.0.exe](https://github.com/theHocineSaad/chargily-pay-testing-tool/releases/download/v1.0.0/Install.Chargily.Pay.Testing.Tool.1.0.0.exe "Install Chargily Pay Testing Tool 1.0.0.exe")
+
 ## Chargily Pay Testing Tool (CPTT)
 Chargily Pay Testing Tool  aka CPTT is a desktop application that helps developers test their integration of Chargily Pay gateway before launching your app.
 
